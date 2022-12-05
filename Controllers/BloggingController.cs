@@ -18,7 +18,7 @@ public class BloggingController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "Blogging")]
+    [HttpGet()]
     public IEnumerable<Blog> Get()
     {
 
@@ -39,7 +39,7 @@ public class BloggingController : ControllerBase
             .ToList();
         return blog;
     }
-    [HttpPost(Name = "Blogging")]
+    [HttpPost()]
     public IEnumerable<Blog> Post([FromBody] Blog body)
     {
 
@@ -60,8 +60,8 @@ public class BloggingController : ControllerBase
             .ToList();
         return blog;
     }
-    [HttpPut()]
-    public IEnumerable<Blog> Delete([FromBody] Blog body)
+    [HttpPut("{id}")]
+    public IEnumerable<Blog> Delete([FromBody] Blog body, int id)
     {
 
         using var db = new BloggingContext();
@@ -72,7 +72,7 @@ public class BloggingController : ControllerBase
         // Update
         Console.WriteLine("Querying for a blog");
         var blog = db.Blogs
-            .Find(body.BlogId);
+            .Find(id);
         blog.Url = body.Url;
         db.SaveChanges();
         // Read
