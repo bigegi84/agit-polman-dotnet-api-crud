@@ -6,11 +6,6 @@ namespace dotnet_api_test.Controllers;
 [Route("[controller]")]
 public class BloggingController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
     private readonly ILogger<BloggingController> _logger;
 
     public BloggingController(ILogger<BloggingController> logger)
